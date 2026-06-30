@@ -1,0 +1,21 @@
+<?php
+
+namespace App\Http\Requests\Admin;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class UpdateOrderRequest extends FormRequest
+{
+    public function authorize(): bool
+    {
+        return true;
+    }
+
+    public function rules(): array
+    {
+        return [
+            'status' => 'sometimes|in:pending,processing,shipped,completed,cancelled',
+            'payment_status' => 'sometimes|in:pending,paid,failed,refunded',
+        ];
+    }
+}
