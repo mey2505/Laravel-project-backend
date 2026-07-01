@@ -60,6 +60,18 @@ class ProductController extends Controller
             ->additional(['message' => 'Product updated successfully.']);
     }
 
+    public function updateStatus(Request $request, Product $product)
+    {
+        $validated = $request->validate([
+            'status' => 'required|boolean',
+        ]);
+
+        $product->update($validated);
+
+        return (new ProductResource($product->refresh()->load('category')))
+            ->additional(['message' => 'Product status updated successfully.']);
+    }
+
     public function destroy(Product $product)
     {
         $this->service->deleteProduct($product->id);

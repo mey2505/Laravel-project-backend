@@ -41,6 +41,7 @@ Route::prefix('v1')->group(function () {
 
         Route::apiResource('products', \App\Http\Controllers\Api\V1\Admin\ProductController::class);
         Route::post('products/{product}', [\App\Http\Controllers\Api\V1\Admin\ProductController::class, 'update']);
+        Route::put('products/{product}/status', [\App\Http\Controllers\Api\V1\Admin\ProductController::class, 'updateStatus']);
 
         Route::get('settings', [\App\Http\Controllers\Api\V1\Admin\SettingController::class, 'index']);
         Route::post('settings', [\App\Http\Controllers\Api\V1\Admin\SettingController::class, 'update']);

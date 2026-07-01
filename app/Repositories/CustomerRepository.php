@@ -18,9 +18,7 @@ class CustomerRepository extends BaseRepository
                 $query->whereIn('name', ['Super Admin', 'Admin', 'Manager', 'Staff']);
             })
             ->withCount('orders')
-            ->withSum(['orders as total_spent' => function ($query) {
-                $query->where('payment_status', 'paid');
-            }], 'total')
+            ->withSum('orders as total_spent', 'total')
             ->when($search, fn ($q, $search) => $q
                 ->where(fn ($q) => $q
                     ->where('name', 'like', "%{$search}%")
@@ -35,9 +33,7 @@ class CustomerRepository extends BaseRepository
     {
         return $this->model
             ->withCount('orders')
-            ->withSum(['orders as total_spent' => function ($query) {
-                $query->where('payment_status', 'paid');
-            }], 'total')
+            ->withSum('orders as total_spent', 'total')
             ->with(['orders' => fn ($q) => $q->with('items.product')->latest()])
             ->find($id);
     }

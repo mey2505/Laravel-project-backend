@@ -15,7 +15,7 @@ class OrderController extends Controller
 {
     public function index(Request $request)
     {
-        $orders = $request->user()->orders()->with('items')->latest()->paginate(10);
+        $orders = $request->user()->orders()->with('items.product')->latest()->paginate(10);
         return OrderResource::collection($orders);
     }
 
