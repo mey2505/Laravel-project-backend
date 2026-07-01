@@ -77,6 +77,6 @@ Route::prefix('v1')->group(function () {
         Route::get('orders/{order:order_number}', [\App\Http\Controllers\Api\V1\OrderController::class, 'show']);
         
         // Reviews
-        Route::post('products/{product:slug}/reviews', [\App\Http\Controllers\Api\V1\ProductReviewController::class, 'store']);
+        // Route::post('products/{product:slug}/reviews', [\App\Http\Controllers\Api\V1\ProductReviewController::class, 'store']);
     });
 });
